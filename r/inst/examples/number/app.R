@@ -1,5 +1,5 @@
 library(shiny)
-library(shinycomponent)
+library(shinycomponenttemplate)
 
 ui <- fluidPage(
   theme = bslib::bs_theme(),

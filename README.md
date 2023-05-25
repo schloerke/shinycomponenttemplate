@@ -1,7 +1,7 @@
-Shiny component example
-=======================
+Shiny component template
+========================
 
-This repository contains a simple example of a Shiny component for both R and Python.
+This repository contains a simple template of a Shiny component for both R and Python.
 
 The folders are organized as follows:
 
@@ -17,13 +17,13 @@ The folders are organized as follows:
 Install the R package:
 
 ```R
-remotes::install_github("wch/shinycomponent/r")
+remotes::install_github("wch/shinycomponenttemplate/r")
 ```
 
 After installing, you can run the demo app. Either copy and paste the [example app](r/inst/examples/number/app.R) into your R console, or run:
 
 ```R
-shiny::runApp(system.file("examples/number", package = "shinycomponent"))
+shiny::runApp(system.file("examples/number", package = "shinycomponenttemplate"))
 ```
 
 
@@ -32,8 +32,8 @@ shiny::runApp(system.file("examples/number", package = "shinycomponent"))
 To install the Python package:
 
 ```bash
-pip uninstall -y shinycomponent
-pip install "shinycomponent@git+https://github.com/wch/shinycomponent.git#subdirectory=py"
+pip uninstall -y shinycomponenttemplate
+pip install "shinycomponenttemplate@git+https://github.com/wch/shinycomponenttemplate.git#subdirectory=py"
 ```
 
 After installing, you can run the demo app. Save the [example app](py/examples/number/app.py) to a file named app.py, and run it:
