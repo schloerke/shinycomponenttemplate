@@ -85,18 +85,16 @@ pip install -e .[dev]
 
 ### TypeScript
 
-The component is written in TypeScript. To set up the build environment, first [install yarn](https://classic.yarnpkg.com/lang/en/docs/install/).
-
-Then, install the dependencies:
+The component is written in TypeScript. To set up the build environment, install the dependencies:
 
 ```bash
 cd js
-yarn
+npm i
 ```
 
 To build the component:
 
 ```bash
-yarn build
+npm run build
 ```
 
