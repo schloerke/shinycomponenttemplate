@@ -11,9 +11,9 @@ example_number_input <- function(id, ...) {
 
 component_dep <- function() {
   htmlDependency(
-    name = "shinycomponenttemplate",
-    version = as.character(packageVersion("shinycomponenttemplate")),
-    src = system.file(package = "shinycomponenttemplate", "www"),
+    name = "componenttemplate",
+    version = as.character(packageVersion("componenttemplate")),
+    src = system.file(package = "componenttemplate", "www"),
     stylesheet = "open-props.min.css",
     script = list(src = "example-number-input.js", type = "module")
   )
