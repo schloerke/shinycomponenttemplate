@@ -6,7 +6,7 @@ This repository contains a simple template of a Shiny component for both R and P
 The folders are organized as follows:
 
 - `r`: R package
-- `python`: Python package
+- `py`: Python package
 - `js`: TypeScript code for the component
 
 
