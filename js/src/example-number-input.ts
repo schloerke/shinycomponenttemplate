@@ -68,7 +68,7 @@ customElements.define("example-number-input", ExampleNumberInput);
 // =============================================================================
 // Register Shiny input binding
 // =============================================================================
-class ExampleNumberInputBinding extends Shiny.InputBinding {
+class ExampleNumberInputBinding extends Shiny["InputBinding"] {
   constructor() {
     super();
   }
