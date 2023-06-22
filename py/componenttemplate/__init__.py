@@ -39,7 +39,7 @@ def example_number_input(
 
     return TagList(
         component_dep(),
-        Tag("example-number-input", id=id, *args, _add_ws=_add_ws, **kwargs),
+        Tag("example-number-input", *args, id=id, _add_ws=_add_ws, **kwargs),
     )
 
 
