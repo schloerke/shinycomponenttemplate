@@ -44,14 +44,14 @@ def example_number_input(
 
 
 def component_dep() -> HTMLDependency:
-    ex_www_path = PurePath(__file__).parent / "www"
+    www_path = PurePath(__file__).parent / "www"
 
     return HTMLDependency(
-        name="shinycomponent",
+        name="componenttemplate",
         version=__version__,
         source={
-            "package": "shinycomponent",
-            "subdir": str(ex_www_path),
+            "package": "componenttemplate",
+            "subdir": str(www_path),
         },
         stylesheet={"href": "open-props.min.css"},
         script=[
