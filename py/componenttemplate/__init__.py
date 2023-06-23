@@ -43,18 +43,31 @@ def example_number_input(
     )
 
 
-def component_dep() -> HTMLDependency:
-    www_path = PurePath(__file__).parent / "www"
+www_path = str(PurePath(__file__).parent / "www")
 
+
+def component_dep() -> list[HTMLDependency]:
+    return [
+        open_props_dep(),
+        HTMLDependency(
+            name="componenttemplate",
+            version=__version__,
+            source={
+                "package": "componenttemplate",
+                "subdir": www_path,
+            },
+            script={"src": "example-number-input.js", "type": "module"},
+        ),
+    ]
+
+
+def open_props_dep() -> HTMLDependency:
     return HTMLDependency(
-        name="componenttemplate",
+        name="open-props",
         version=__version__,
         source={
             "package": "componenttemplate",
-            "subdir": str(www_path),
+            "subdir": www_path,
         },
         stylesheet={"href": "open-props.min.css"},
-        script=[
-            {"src": "example-number-input.js", "type": "module"},
-        ],
     )
