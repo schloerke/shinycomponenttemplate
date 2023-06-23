@@ -13,12 +13,13 @@
     "eslint": "^8.41.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "open-props": "^1.5.10",
     "prettier": "^2.8.8",
     "prettier-plugin-organize-imports": "^3.2.2",
     "typescript": "^5.0.4"
   },
   "scripts": {
-    "build": "esbuild src/example-number-input.ts --bundle --minify --sourcemap --outdir=out"
+    "build": "cp node_modules/open-props/open-props.min.css out/ && esbuild src/example-number-input.ts --bundle --minify --sourcemap --outdir=out"
   },
   "dependencies": {
     "lit": "^2.7.4"
