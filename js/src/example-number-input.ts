@@ -1,20 +1,10 @@
 import { LitElement, css, html } from "lit";
+import { property } from "lit/decorators.js";
 
 // =============================================================================
 // WebComponent definition
 // =============================================================================
 export class ExampleNumberInput extends LitElement {
-  min: number = 0;
-  max: number = 10;
-  value: number = (this.min + this.max) / 2;
-  onChangeCallback = (x: boolean) => {};
-
-  static properties = {
-    min: { type: Number },
-    max: { type: Number },
-    value: { type: Number },
-  };
-
   static styles = css`
     input {
       padding: var(--size-2);
@@ -22,15 +12,16 @@ export class ExampleNumberInput extends LitElement {
       font-size: var(--font-size-1);
     }
     input:invalid {
-      outline: var(--border-size-2) solid var(--red-10);
+      outline-offset: -2px;
+      outline: var(--border-size-2) solid var(--red-6);
     }
     span {
       display: inline-block;
       font-size: var(--font-size-1);
-      font-weight: var(--font-weight-2);
+      font-weight: var(--font-weight-3);
       color: var(--red-6);
       transform: scaleX(0);
-      transition: transform 0.3s var(--ease-squish-2);
+      transition: transform 0.2s var(--ease-5);
       transform-origin: left;
     }
     input:invalid + span {
@@ -38,14 +29,24 @@ export class ExampleNumberInput extends LitElement {
     }
   `;
 
-  handle_change(e: InputEvent) {
-    this.value = clamp(
-      (e.target as HTMLInputElement).valueAsNumber,
-      this.min,
-      this.max
-    );
-    // Tell the output binding we've changed
-    this.onChangeCallback(true);
+  @property({ type: Number }) min: number = -Infinity;
+  @property({ type: Number }) max: number = Infinity;
+  @property({ type: Number }) value: number = 0;
+
+  // This is a placeholder function that will be overwritten by the Shiny input
+  // binding. When the input value changes, it invokes this function to notify
+  // Shiny that it has changed.
+  onChangeCallback = (x: boolean) => {};
+
+  handleChange(e: InputEvent) {
+    const rawValue = (e.target as HTMLInputElement).valueAsNumber;
+
+    if (rawValue >= this.min && rawValue <= this.max) {
+      this.value = rawValue;
+
+      // Tell the Shiny input binding we've changed.
+      this.onChangeCallback(true);
+    }
   }
 
   render() {
@@ -54,7 +55,7 @@ export class ExampleNumberInput extends LitElement {
         value=${this.value}
         min=${this.min}
         max=${this.max}
-        @change=${this.handle_change}
+        @input=${this.handleChange}
         type="number"
       />
       <span>Make sure your number is between ${this.min} and ${this.max}</span>
@@ -69,16 +70,8 @@ customElements.define("example-number-input", ExampleNumberInput);
 // Register Shiny input binding
 // =============================================================================
 class ExampleNumberInputBinding extends Shiny["InputBinding"] {
-  constructor() {
-    super();
-  }
-
   find(scope: HTMLElement): JQuery<HTMLElement> {
     return $(scope).find("example-number-input");
-  }
-
-  getId(el: ExampleNumberInput): string {
-    return el.id;
   }
 
   getValue(el: ExampleNumberInput) {
@@ -98,10 +91,3 @@ Shiny.inputBindings.register(
   new ExampleNumberInputBinding(),
   "ExampleNumberInputBindingBinding"
 );
-
-// =============================================================================
-// Utility functions
-// =============================================================================
-function clamp(x: number, min: number, max: number): number {
-  return Math.max(Math.min(x, max), min);
-}
