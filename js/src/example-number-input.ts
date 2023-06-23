@@ -29,6 +29,8 @@ export class ExampleNumberInput extends LitElement {
     }
   `;
 
+  // Using the @property decorator requires the tsconfig.json file to have
+  // { "experimentalDecorators": true }
   @property({ type: Number }) min: number = -Infinity;
   @property({ type: Number }) max: number = Infinity;
   @property({ type: Number }) value: number = 0;
